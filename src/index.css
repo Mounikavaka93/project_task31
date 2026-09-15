@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-spotify: #1db954;
+  --color-spotify-hover: #1ed760;
+  --color-surface: #121212;
+  --color-elevated: #181818;
+  --color-highlight: #282828;
+  --color-muted: #b3b3b3;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-sans);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-enter {
+  animation: fade-up 0.45s ease both;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(1200px 400px at 10% -10%, rgba(29, 185, 84, 0.28), transparent 50%),
+    radial-gradient(800px 320px at 90% 0%, rgba(88, 86, 214, 0.22), transparent 46%),
+    linear-gradient(180deg, #1f1f1f 0%, #121212 72%);
+  background-size: 140% 140%;
+  animation: aurora 14s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 40%;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes eq {
+  from {
+    height: 22%;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+.eq-bar {
+  width: 3px;
+  border-radius: 99px;
+  background: #1db954;
+  animation: eq 0.55s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.eq-bar:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+@keyframes pulse-play {
+  0% {
+    box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(29, 185, 84, 0);
+  }
+}
+
+.play-pulse {
+  animation: pulse-play 1.4s ease-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+.animate-shine {
+  animation: shine 0.85s ease forwards;
+}
+
+@keyframes float-soft {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 99px;
+  background: #fff;
+  margin-top: -4px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb,
+input[type="range"]:focus::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 99px;
+  background: transparent;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border: none;
+  border-radius: 99px;
+  background: #fff;
+  opacity: 0;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  opacity: 1;
+}
+
+.hide-scrollbar,
+.smooth-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar,
+.smooth-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes vinyl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gramophone-record {
+  transform-origin: 210px 286px;
+  animation: vinyl-spin 3.2s linear infinite;
+}
+
+.gramophone-arm,
+.gramophone-arm-rest {
+  transform-origin: 262px 251px;
+}
+
+.gramophone-arm-rest {
+  transform: rotate(-32deg);
+}
+
+.gramophone-arm {
+  animation: arm-drop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes arm-drop {
+  from {
+    transform: rotate(-32deg);
+  }
+  to {
+    transform: rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  .smooth-scroll,
+  .hide-scrollbar {
+    scroll-behavior: auto;
+  }
+
+  .hero-glow,
+  .eq-bar,
+  .play-pulse,
+  .page-enter,
+  .animate-shine,
+  .gramophone-record,
+  .gramophone-arm {
+    animation: none !important;
+  }
+}
